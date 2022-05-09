@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['prefix' => 'movies'], function () {
+    Route::get('', 'MovieController@getAllMovies')->name('api.movie.index');
+    Route::get('{id}', 'MovieController@getMovieById')->name('api.movie.show');
+    Route::post('', 'MovieController@createMovie')->name('api.movie.store');
 });
